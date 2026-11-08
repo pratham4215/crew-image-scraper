@@ -1,0 +1,65 @@
+Agent customization: 
+Done only through setting various attributes. 
+
+Process execution:
+Sequential: Executes tasks sequentially, ensuring tasks are completed in an orderly progression.
+eg:
+crew = Crew(
+    agents=my_agents,
+    tasks=my_tasks,
+    process=Process.sequential
+)
+
+Hierarchical: Organizes tasks in a managerial hierarchy, where tasks are delegated and executed 
+based on a structured chain of command. A manager language model (manager_llm) or a custom 
+manager agent (manager_agent) must be specified in the crew to enable the hierarchical process, 
+facilitating the creation and management of tasks by the manager.
+eg:
+crew = Crew(
+    agents=my_agents,
+    tasks=my_tasks,
+    process=Process.hierarchical,
+    manager_llm="gpt-4o"
+    # or
+    # manager_agent=my_manager_agent
+)
+
+Consensual Process (Planned): Aiming for collaborative decision-making among agents on task 
+execution, this process type introduces a democratic approach to task management within CrewAI. 
+It is planned for future development and is not currently implemented in the codebase.
+
+
+Planning: 
+This process generates logical steps to be taken by reading the the tasks and agents used.
+There is a planning_llm which does these processes.
+
+
+Agent attributes:
+Attribute                       Description
+Role                            Defines the agent’s function and expertise within the crew.
+Goal                            The individual objective that guides the agent’s decision-making.
+Backstory                       Provides context and personality to the agent, enriching interactions.
+LLM                             Language model that powers the agent. Defaults to the model specified in OPENAI_MODEL_NAME or “gpt-4”.
+Tools                           Capabilities or functions available to the agent. Defaults to an empty list.
+Function Calling LLM            Language model for tool calling, overrides crew’s LLM if specified.
+Max Iterations                  Maximum iterations before the agent must provide its best answer. Default is 20.
+Max RPM                         Maximum requests per minute to avoid rate limits.
+Max Execution Time              Maximum time (in seconds) for task execution.
+Memory                          Whether the agent should maintain memory of interactions. Default is True.
+Verbose                         Enable detailed execution logs for debugging. Default is False.
+Allow Delegation                Allow the agent to delegate tasks to other agents. Default is False.
+Step Callback                   Function called after each agent step, overrides crew callback.
+Cache                           Enable caching for tool usage. Default is True.
+System Template                 Custom system prompt template for the agent.
+Prompt Template                 Custom prompt template for the agent.
+Response Template               Custom response template for the agent.
+Allow Code Execution            Enable code execution for the agent. Default is False.
+Max Retry Limit                 Maximum number of retries when an error occurs. Default is 2.
+Respect Context Window          Keep messages under context window size by summarizing. Default is True.
+Code Execution Mode             Mode for code execution: ‘safe’ (using Docker) or ‘unsafe’ (direct). Default is ‘safe’.
+Embedder                        Configuration for the embedder used by the agent.
+Knowledge Sources               Knowledge sources available to the agent.
+Use System Prompt               Whether to use system prompt (for o1 model support). Default is True.
+
+
+Note: Each task can have a single agent.

@@ -1,0 +1,21 @@
+# Secrets
+.env
+*api key*
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+
+# Script output
+downloaded_images/
+images/
+
+# Editor / OS
+tempCodeRunnerFile.py
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
